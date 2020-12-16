@@ -1,5 +1,10 @@
-import bot.config.config as TOKEN
+from bot.config import TOKEN
 
 import telebot
+bot = telebot.TeleBot(TOKEN)
 
-bot = telebot.TeleBot(TOKEN.token())
+@bot.message_handler(commands=['start'])
+def start_message(message):
+    bot.send_message(message.chat.id, 'test')
+
+bot.polling(none_stop=True, interval=0

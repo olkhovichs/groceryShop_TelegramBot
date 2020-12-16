@@ -1,1 +1,1 @@
-__all__ = ["sections"]
+__all__ = ['config']
