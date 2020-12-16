@@ -1,3 +1,4 @@
 *.DS_Store
-token.txt
 /bot/__pycache__
+/bot/config/__pycache__
+/bot/config/token.txt
