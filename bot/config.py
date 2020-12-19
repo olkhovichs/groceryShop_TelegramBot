@@ -1,9 +1,9 @@
 import os
 
-def hideToken():
+def hide_token():
     with open('token.txt') as file:
         for line in file:
             token = line
     return token
 
-TOKEN = hideToken()
+TOKEN = hide_token()
