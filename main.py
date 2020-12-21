@@ -7,20 +7,24 @@ from aiogram.utils.markdown import text
 from aiogram.dispatcher import Dispatcher
 
 bot = Bot(TOKEN)
-disp = Dispatcher(bot)
+dp = Dispatcher(bot)
 
-@disp.message_handler(commands = ['start'])
-async def init_menu(message: types.Message):
-    await message.reply("Выберите действие", reply_markup = btn.markup_menu)
+@dp.message_handler(commands = ['start'])
+async def menu(message: types.Message):
+    await message.reply("Выберите действие:", reply_markup = btn.init_menu())
 
 
-'''
-@disp.callback_query_handler(func=lambda  call: True)
-def event_buttons(call):
-    if call.data = 'categ':
-'''
+@dp.callback_query_handler(lambda call: call.data == 'categ')
+async def product_menu1(callback_query: types.CallbackQuery):
+    await bot.answer_callback_query(callback_query.id)
+    await bot.send_message(callback_query.from_user.id, 'Категории:', reply_markup=btn.categ_menu())
+
+
+
+
+
 
 
 ##
 if __name__ == '__main__':
-    executor.start_polling(disp)
+    executor.start_polling(dp)
