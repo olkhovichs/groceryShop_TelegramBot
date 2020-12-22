@@ -7,3 +7,4 @@ def hide_token():
     return token
 
 TOKEN = hide_token()
+about_path = 'https://github.com/olkhovichs/groceryShop_TelegramBot/blob/master/README.md'
