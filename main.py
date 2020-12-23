@@ -12,14 +12,15 @@ dp = Dispatcher(bot)
 # main
 @dp.message_handler(commands = ['start'])
 async def main_menu(message: types.Message):
-    await message.reply("Выберите действие:", reply_markup = btn.init_menu())
+    await message.reply("Выберите действие:", reply_markup = btn.main_menu())
 
-# nested menu
+# nested main menu
 @dp.callback_query_handler(lambda call: True)
-async def event_buttons(call):
-    if call.data == 'exit':
+async def buttons_main(call):
+    if call.data == 'categ':
         await bot.answer_callback_query(call.id)
         await bot.delete_message(call.from_user.id, call.message.message_id)
+        await bot.send_message(message.from_user.id, text = 'categ', reply_markup=btn.categ_menu) # ?
 
 
 ##
