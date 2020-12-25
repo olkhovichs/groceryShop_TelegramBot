@@ -26,5 +26,5 @@ def categ_menu():
     btn_fish = InlineKeyboardButton('Рыба', callback_data='fish')
     btn_cereal = InlineKeyboardButton('Бакалея', callback_data='cereal')
     markup_categ = InlineKeyboardMarkup(row_width=3)
-    markup_categ.add(btn_bread, btn_cereal)
+    markup_categ.add(btn_sales, btn_drinks,btn_veg, btn_fruits, btn_milk, btn_bread, btn_meat, btn_fish, btn_cereal)
     return markup_categ
