@@ -28,6 +28,10 @@ async def event_buttons(call: types.CallbackQuery):
     elif call.data == 'exit':
         await bot.answer_callback_query(call.id)
         await bot.delete_message(call.from_user.id, call.message.message_id)
+    elif call.data == 'sales': # ?
+        await bot.answer_callback_query(call.id)
+        await bot.send_message(call.from_user.id, 'Продукт:', reply_markup=btn.product_menu()) # finish it !!!
+        await bot.delete_message(call.from_user.id, call.message.message_id)
 
 
 ###
