@@ -7,8 +7,11 @@ class Product:
         self.src_img = src_img
 
     @property
-    def sale(init_price, procent):
-        pass
+    def sale(self, price, procent):
+        super().__init__(price)
+        self.procent = procent
+        self.price = 
+
 
 class Drinks(Product):
     def __init__(self, name, price, src_img, volume):
@@ -20,7 +23,7 @@ class VegFruit(Product):
         super().__init__(name, price, src_img)
         self.weight = weight
 
-class Milk(Product, [Drinks]):
+class Milk(Product, Drinks):
     def __init__(self, name, price, src_img, volume):
         super().__init__(name, price, src_img, volume)
 
@@ -33,7 +36,7 @@ class Meat(Product):
         super().__init__(name, price, src_img)
         self.weight = weight
 
-class Fish(Product, [Meat]):
+class Fish(Product, Meat):
     def __init__(self, name, price, src_img, weight):
         super().__init__(name, price, src_img, weight)
 

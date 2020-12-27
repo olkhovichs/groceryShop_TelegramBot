@@ -14,18 +14,20 @@ dp = Dispatcher(bot)
 async def main_menu(message: types.Message):
     await message.reply("Выберите действие:", reply_markup = btn.main_menu())
 
-# categ
-@dp.callback_query_handler(lambda call: call.data == 'categ')
-async def categ_btn(call: types.CallbackQuery):
-    await bot.answer_callback_query(call.id)
-    await bot.send_message(call.from_user.id, 'categ', reply_markup=btn.categ_menu())
-    await bot.delete_message(call.from_user.id, call.message.message_id)
-
-# exit
-@dp.callback_query_handler(lambda call: call.data == 'exit')
-async def exit_btn(call: types.CallbackQuery):
-    await bot.answer_callback_query(call.id)
-    await bot.delete_message(call.from_user.id, call.message.message_id)
+# buttons
+@dp.callback_query_handler(lambda call: True)
+async def event_buttons(call: types.CallbackQuery):
+    if call.data == 'categ':
+        await bot.answer_callback_query(call.id)
+        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.categ_menu())
+        await bot.delete_message(call.from_user.id, call.message.message_id)
+    elif call.data == 'back_categ':
+        await bot.answer_callback_query(call.id)
+        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.main_menu())
+        await bot.delete_message(call.from_user.id, call.message.message_id)
+    elif call.data == 'exit':
+        await bot.answer_callback_query(call.id)
+        await bot.delete_message(call.from_user.id, call.message.message_id)
 
 
 ###
