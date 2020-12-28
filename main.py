@@ -17,20 +17,26 @@ async def main_menu(message: types.Message):
 # buttons
 @dp.callback_query_handler(lambda call: True)
 async def event_buttons(call: types.CallbackQuery):
-    if call.data == 'categ':
+    # 1 level and cart
+    if call.data == 'categ' or call.data == 'back_cart':
         await bot.answer_callback_query(call.id)
         await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.categ_menu())
         await bot.delete_message(call.from_user.id, call.message.message_id)
-    elif call.data == 'back_categ':
+    elif call.data == 'cart':
         await bot.answer_callback_query(call.id)
-        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.main_menu())
+        await bot.send_message(call.from_user.id, 'Корзина:', reply_markup=btn.cart_menu()) 
         await bot.delete_message(call.from_user.id, call.message.message_id)
     elif call.data == 'exit':
         await bot.answer_callback_query(call.id)
         await bot.delete_message(call.from_user.id, call.message.message_id)
+    # 2 level
+    elif call.data == 'back_categ':
+        await bot.answer_callback_query(call.id)
+        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.main_menu())
+        await bot.delete_message(call.from_user.id, call.message.message_id)
     elif call.data == 'sales': # ?
         await bot.answer_callback_query(call.id)
-        await bot.send_message(call.from_user.id, 'Продукт:', reply_markup=btn.product_menu()) # finish it !!!
+        await bot.send_message(call.from_user.id, 'Скидки:', reply_markup=btn.product_menu()) # finish it !!!
         await bot.delete_message(call.from_user.id, call.message.message_id)
 
 
