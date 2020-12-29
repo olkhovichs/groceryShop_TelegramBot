@@ -7,10 +7,11 @@ class Product:
         self.src_img = src_img
 
     @property
-    def sale(self, price, procent):
+    def sale(self, price, procent_sale):
         super().__init__(price)
-        self.procent = procent
-        self.price = 
+        self.procent_sale = procent_sale
+        return price - price / 100 * procent_sale
+        
 
 
 class Drinks(Product):

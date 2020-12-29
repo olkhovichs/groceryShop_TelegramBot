@@ -8,5 +8,3 @@ def hide_token():
 
 TOKEN = hide_token()
 about_path = 'https://github.com/olkhovichs/groceryShop_TelegramBot/blob/master/README.md'
-all_categ = list()
-all_categ = ['']
