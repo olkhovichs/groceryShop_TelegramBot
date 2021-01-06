@@ -14,6 +14,11 @@ dp = Dispatcher(bot)
 async def main_menu(message: types.Message):
     await message.reply("Выберите действие:", reply_markup = btn.main_menu())
 
+@dp.message_handler(text = True)
+async def main_menu(message: types.Message):
+    if text == 'Категории':
+        await message.reply("Выберите действие:", reply_markup = btn.categ_menu()) # not finished !!!
+
 # buttons
 @dp.callback_query_handler(lambda call: True)
 async def event_buttons(call: types.CallbackQuery):
@@ -34,7 +39,7 @@ async def event_buttons(call: types.CallbackQuery):
         await bot.answer_callback_query(call.id)
         await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.main_menu())
         await bot.delete_message(call.from_user.id, call.message.message_id)
-    elif call.data == 'sales': # ?
+    elif call.data == 'sales':
         await bot.answer_callback_query(call.id)
         await bot.send_message(call.from_user.id, 'Скидки:', reply_markup=btn.product_menu()) # finish it !!!
         await bot.delete_message(call.from_user.id, call.message.message_id)
