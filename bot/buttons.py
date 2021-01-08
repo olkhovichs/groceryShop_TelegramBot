@@ -1,32 +1,33 @@
 from bot.config import about_path as gh_rm
-#import sql.sql_utils as bu
+import sql.sql_utils as bu
 
 from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
         InlineKeyboardMarkup, InlineKeyboardButton
-'''
+
+# 2 level with sqlite db
 def show_categ():
-    categ_markup = InlineKeyboardMarkup()
+    markup_categg = InlineKeyboardMarkup(row_width=3)
 
     for category in bu.show_menu():
-        category_btn = InlineKeyboardButton(category[1], callback_data=) # ? not finished sqlite3
-'''
+        btn_categ = InlineKeyboardButton(category[1], callback_data='categoryId' + str(category[0]))
+        markup_categg.add(btn_categ)
 
-# 1 level
+        return markup_categg
+
+# 1 level: menu
 def main_menu():
     btn_categ = InlineKeyboardButton(text = 'Категории', callback_data='categ') 
     global btn_cart
     btn_cart = InlineKeyboardButton(text = 'Корзина', callback_data='cart') 
     btn_about = InlineKeyboardButton(text = 'Информация', url = gh_rm, callback_data='about') 
     btn_exit = InlineKeyboardButton(text = 'Выход', callback_data='exit')
-    rb = KeyboardButton(text = 'Категории')
-    mb = ReplyKeyboardMarkup().add(rb)
 
     markup_menu = InlineKeyboardMarkup()
     markup_menu.row(btn_categ).row(btn_cart) # add categories and cart
     markup_menu.row(btn_about, btn_exit) # add about and exit bot ?
 
-    return mb
+    return markup_menu
 
 # 2 level: categories
 def categ_menu():
@@ -66,7 +67,7 @@ def cart_menu():
     btn_place = InlineKeyboardButton('Оформить заказ на', callback_data='place_order') # + srt (sum)
     '''
     btn_left = InlineKeyboardButton('<', callback_data='left') # flipping
-    btn_quantity = InlineKeyboardButton('', callback_data='quantity')
+    btn_quantity = InlineKeyboardButton('', callback_data='quantity') # to add pages
     btn_right = InlineKeyboardButton('>', callback_data='right')
     '''
     btn_empty_cart = InlineKeyboardButton('Очистить', callback_data='empty')
