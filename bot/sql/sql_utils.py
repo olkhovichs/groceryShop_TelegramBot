@@ -4,12 +4,11 @@ import sqlite3
 
 def show_menu():
     try:
-        conn = sqlite3.connect('bot.db') # connection db
-        cursor = conn.cursor() # creating cursor for executing requests
-        query = """CREATE TABLE categories
-                    (bread text, milk text, water text)""" # request
-        cursor.execute(query) # executing request
-        categories = cursor.fetchall() # saving in variable
+        conn = sqlite3.connect('bot.db')
+        cursor = conn.cursor()
+        query = """SELECT * FROM 'categories'"""
+        cursor.execute(query)
+        categories = cursor.fetchall()
     except Error:
         print(Error)
     finally:
