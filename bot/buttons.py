@@ -1,19 +1,18 @@
 from bot.config import about_path as gh_rm
-import sql.sql_utils as bu
+import bot.sql.sql_utils as db
 
 from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
         InlineKeyboardMarkup, InlineKeyboardButton
 
 # 2 level with sqlite db
-def show_categ():
-    markup_categg = InlineKeyboardMarkup(row_width=3)
-
-    for category in bu.show_menu():
-        btn_categ = InlineKeyboardButton(category[1], callback_data='categoryId' + str(category[0]))
-        markup_categg.add(btn_categ)
-
-        return markup_categg
+def categ_menu():
+    markup_categ = InlineKeyboardMarkup(row_width=3)
+    for category in db.show_categories():
+        btn_categ = InlineKeyboardButton(category[1], callback_data='categ_id:' + str(category[0]))
+        markup_categ.add(btn_categ)
+    
+    return markup_categ
 
 # 1 level: menu
 def main_menu():
@@ -28,7 +27,7 @@ def main_menu():
     markup_menu.row(btn_about, btn_exit) # add about and exit bot ?
 
     return markup_menu
-
+'''
 # 2 level: categories
 def categ_menu():
     btn_sales = InlineKeyboardButton('Скидки!', callback_data='sales') 
@@ -48,7 +47,7 @@ def categ_menu():
     markup_categ.row(btn_back_categ)
 
     return markup_categ
-
+'''
 # 3 level: specific product
 def product_menu():
     btn_incr = InlineKeyboardButton('-', callback_data='decr')
