@@ -1,10 +1,10 @@
 import sqlite3
-#from datetime import datetime
-#from dateutil import tz
 
-def show_menu():
+from sqlite3 import Error
+
+def show_categories():
     try:
-        conn = sqlite3.connect('bot.db')
+        conn = sqlite3.connect('/Users/semenolhovic/Python_Projects/groceryShop/bot/sql/bot.db')
         cursor = conn.cursor()
         query = """SELECT * FROM 'categories'"""
         cursor.execute(query)

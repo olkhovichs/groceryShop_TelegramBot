@@ -9,9 +9,9 @@ from aiogram.types import ReplyKeyboardRemove, \
 def categ_menu():
     markup_categ = InlineKeyboardMarkup(row_width=3)
     for category in db.show_categories():
-        btn_categ = InlineKeyboardButton(category[1], callback_data='categ_id:' + str(category[0]))
+        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ')
         markup_categ.add(btn_categ)
-    
+
     return markup_categ
 
 # 1 level: menu
