@@ -1,5 +1,4 @@
 import sqlite3
-
 from sqlite3 import Error
 
 def show_categories():
@@ -18,7 +17,7 @@ def show_categories():
         conn.close()
 
     return categories
- # заполнить таблицу автоматически!!
+    
 def print_products(product_id):
     try:
         conn = sqlite3.connection('/Users/semenolhovic/Python_Projects/groceryShop/bot/sql/bot.db')
@@ -36,3 +35,5 @@ def print_products(product_id):
         conn.close()
 
     return products
+
+

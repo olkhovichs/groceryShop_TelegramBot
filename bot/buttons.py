@@ -5,15 +5,6 @@ from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
         InlineKeyboardMarkup, InlineKeyboardButton
 
-# 2 level with sqlite db
-def categ_menu():
-    markup_categ = InlineKeyboardMarkup(row_width=3)
-    for category in db.show_categories():
-        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ')
-        markup_categ.add(btn_categ)
-
-    return markup_categ
-
 # 1 level: menu
 def main_menu():
     btn_categ = InlineKeyboardButton(text = 'Категории', callback_data='categ') 
@@ -27,29 +18,19 @@ def main_menu():
     markup_menu.row(btn_about, btn_exit) # add about and exit bot ?
 
     return markup_menu
-'''
-# 2 level: categories
-def categ_menu():
-    btn_sales = InlineKeyboardButton('Скидки!', callback_data='sales') 
-    btn_drinks = InlineKeyboardButton('Напитки', callback_data='drinks') 
-    btn_veg = InlineKeyboardButton('Овощи', callback_data='veg')
-    btn_fruits = InlineKeyboardButton('Фрукты', callback_data='fruits')
-    btn_milk = InlineKeyboardButton('Молоко', callback_data='milk')
-    btn_bread = InlineKeyboardButton('Хлеб', callback_data='water')
-    btn_meat = InlineKeyboardButton('Мясо', callback_data='meat')
-    btn_fish = InlineKeyboardButton('Рыба', callback_data='fish')
-    btn_cereal = InlineKeyboardButton('Бакалея', callback_data='cereal')
-    btn_back_categ = InlineKeyboardButton('Назад', callback_data='back_categ')
 
+# 2 level with sqlite db
+def categ_menu():
     markup_categ = InlineKeyboardMarkup(row_width=3)
-    markup_categ.add(btn_sales, btn_drinks, btn_veg, btn_fruits,  # add all categories
-    btn_milk, btn_bread, btn_meat, btn_fish, btn_cereal)
-    markup_categ.row(btn_back_categ)
+    for category in db.show_categories(): # add all categories
+        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ' + str(category[0]))
+        markup_categ.insert(btn_categ)
+    markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_categ'))
 
     return markup_categ
-'''
-# 3 level: specific product
-def product_menu():
+
+# 3 level: print specific products
+def products_buttons():
     btn_incr = InlineKeyboardButton('-', callback_data='decr')
     btn_decr = InlineKeyboardButton('+', callback_data='incr')
     btn_addcart = InlineKeyboardButton('В корзину', callback_data='addcart')
