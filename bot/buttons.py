@@ -19,11 +19,11 @@ def main_menu():
 
     return markup_menu
 
-# 2 level with sqlite db
+# 2 level: categories
 def categ_menu():
     markup_categ = InlineKeyboardMarkup(row_width=3)
     for category in db.show_categories(): # add all categories
-        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ' + str(category[0]))
+        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ_id:' + str(category[0]))
         markup_categ.insert(btn_categ)
     markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_categ'))
 
@@ -33,7 +33,7 @@ def categ_menu():
 def products_buttons():
     btn_incr = InlineKeyboardButton('-', callback_data='decr')
     btn_decr = InlineKeyboardButton('+', callback_data='incr')
-    btn_addcart = InlineKeyboardButton('В корзину', callback_data='addcart')
+    #btn_addcart = InlineKeyboardButton('В корзину', callback_data='addcart' + str(pr_id))
     btn_back_product = InlineKeyboardButton('Назад', callback_data='back_product')
 
     markup_product = InlineKeyboardMarkup().row(btn_incr, btn_decr) # add '+' and '-'
