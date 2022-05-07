@@ -1,5 +1,5 @@
 from bot.config import about_path as gh_rm
-import bot.sql.sql_utils as db
+import bot.data.sql_utils as db
 
 from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
@@ -37,8 +37,8 @@ def products_buttons():
     btn_back_product = InlineKeyboardButton('Назад', callback_data='back_product')
 
     markup_product = InlineKeyboardMarkup().row(btn_incr, btn_decr) # add '+' and '-'
-    markup_product.row(btn_addcart) # add to cart
-    markup_product.row(btn_back_product) # add back and cart
+    #markup_product.row(btn_addcart) # add to cart
+    markup_product.row(btn_back_product) # add back and cart 
 
     return markup_product
 

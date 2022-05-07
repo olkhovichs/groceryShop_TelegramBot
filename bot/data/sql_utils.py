@@ -1,9 +1,10 @@
 import sqlite3
 from sqlite3 import Error
+from bot.config import path_db as db
 
 def show_categories():
     try:
-        conn = sqlite3.connect('/Users/semenolhovic/Python_Projects/groceryShop/bot/sql/bot.db')
+        conn = sqlite3.connect(db)
         cursor = conn.cursor()
         query = """
         SELECT * 
@@ -20,7 +21,7 @@ def show_categories():
 
 def print_products(product_id):
     try:
-        conn = sqlite3.connection('/Users/semenolhovic/Python_Projects/groceryShop/bot/sql/bot.db')
+        conn = sqlite3.connection(db)
         cursor = conn.cursor()
         query = """
         SELECT * 
