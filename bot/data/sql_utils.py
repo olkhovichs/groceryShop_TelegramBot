@@ -19,14 +19,13 @@ def show_categories():
 
     return categories
 
-def print_products(product_id):
+def show_products(product_id):
     try:
         conn = sqlite3.connection(db)
         cursor = conn.cursor()
         query = """
         SELECT * 
         FROM 'products'
-        WHERE 'Id' =:Id
         """
         cursor.execute(query, {'Id': product_id})
         products = cursor.fetchall()

@@ -4,7 +4,7 @@ import sqlite3
 from sqlite3 import Error
 
 def hide_token():
-    with open('token.txt') as file:
+    with open('/Users/semenolhovic/Python_Projects/groceryShop/token.txt') as file:
         for line in file:
             token = line
     return token

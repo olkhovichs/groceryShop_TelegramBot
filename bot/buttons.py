@@ -5,6 +5,7 @@ from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
         InlineKeyboardMarkup, InlineKeyboardButton
 
+
 # 1 level: menu
 def main_menu():
     btn_categ = InlineKeyboardButton(text = 'Категории', callback_data='categ') 
@@ -23,24 +24,19 @@ def main_menu():
 def categ_menu():
     markup_categ = InlineKeyboardMarkup(row_width=3)
     for category in db.show_categories(): # add all categories
-        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ_id:' + str(category[0]))
+        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ_id:' + str(category[0])) 
         markup_categ.insert(btn_categ)
     markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_categ'))
 
     return markup_categ
 
-# 3 level: print specific products
-def products_buttons():
-    btn_incr = InlineKeyboardButton('-', callback_data='decr')
-    btn_decr = InlineKeyboardButton('+', callback_data='incr')
-    #btn_addcart = InlineKeyboardButton('В корзину', callback_data='addcart' + str(pr_id))
-    btn_back_product = InlineKeyboardButton('Назад', callback_data='back_product')
+# 3 level: 
+def products():
+    markup_products = InlineKeyboardMarkup(row_width=3)
+    btn_back_products = InlineKeyboardButton('Назад', callback_data='back_products')
+    markup_products.row(btn_back_products)
 
-    markup_product = InlineKeyboardMarkup().row(btn_incr, btn_decr) # add '+' and '-'
-    #markup_product.row(btn_addcart) # add to cart
-    markup_product.row(btn_back_product) # add back and cart 
-
-    return markup_product
+    return markup_products
 
 # cart
 def cart_menu():
