@@ -1,6 +1,6 @@
 from bot.config import TOKEN
 import bot.buttons as btn
-import bot.sql.sql_utils as db
+import bot.data.sql_utils as db
 
 from aiogram import Bot, types
 from aiogram.utils import executor
