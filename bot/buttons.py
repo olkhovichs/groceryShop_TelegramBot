@@ -8,35 +8,40 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 # 1 level: menu
 def main_menu():
-    btn_categ = InlineKeyboardButton(text = 'Категории', callback_data='categ') 
+    btn_products = InlineKeyboardButton(text = 'Товары', callback_data='products') 
     global btn_cart
     btn_cart = InlineKeyboardButton(text = 'Корзина', callback_data='cart') 
     btn_about = InlineKeyboardButton(text = 'Информация', url = gh_rm, callback_data='about') 
     btn_exit = InlineKeyboardButton(text = 'Выход', callback_data='exit')
 
     markup_menu = InlineKeyboardMarkup()
-    markup_menu.row(btn_categ).row(btn_cart) # add categories and cart
+    markup_menu.row(btn_products).row(btn_cart) # add categories and cart
     markup_menu.row(btn_about, btn_exit) # add about and exit bot ?
 
     return markup_menu
 
+
 # 2 level: categories
-def categ_menu():
+'''def categ_menu():
     markup_categ = InlineKeyboardMarkup(row_width=3)
     for category in db.show_categories(): # add all categories
         btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ_id:' + str(category[0])) 
         markup_categ.insert(btn_categ)
     markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_categ'))
 
+    return markup_categ'''
+
+
+# 2 level: all products
+def products_menu():
+    markup_categ = InlineKeyboardMarkup(row_width=3)
+    for product in db.show_products():
+        btn_product = InlineKeyboardButton(text = product[1], callback_data='product_id' + str(product[0]))
+        markup_categ.insert(btn_product)
+    markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_product'))
+
     return markup_categ
 
-# 3 level: 
-def products():
-    markup_products = InlineKeyboardMarkup(row_width=3)
-    btn_back_products = InlineKeyboardButton('Назад', callback_data='back_products')
-    markup_products.row(btn_back_products)
-
-    return markup_products
 
 # cart
 def cart_menu():

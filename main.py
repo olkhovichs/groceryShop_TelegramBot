@@ -20,8 +20,8 @@ async def main_menu(message: types.Message):
 @dp.callback_query_handler(lambda call: True)
 async def event_buttons(call: types.CallbackQuery):
     # 1 level and cart
-    if call.data == 'categ' or call.data == 'back_cart':
-        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.categ_menu())
+    if call.data == 'products' or call.data == 'back_cart':
+        await bot.send_message(call.from_user.id, 'Товары:', reply_markup=btn.products_menu())
         await bot.delete_message(call.from_user.id, call.message.message_id)
         await bot.answer_callback_query(call.id)
     # cart
@@ -32,16 +32,15 @@ async def event_buttons(call: types.CallbackQuery):
     elif call.data == 'exit':
         await bot.delete_message(call.from_user.id, call.message.message_id)
         await bot.answer_callback_query(call.id)
-    
     # 2 level
-    elif call.data == 'back_categ':
-        await bot.send_message(call.from_user.id, 'Категории:', reply_markup=btn.main_menu())
+    elif call.data == 'back_products':
+        await bot.send_message(call.from_user.id, 'Товары:', reply_markup=btn.main_menu())
         await bot.delete_message(call.from_user.id, call.message.message_id)
         await bot.answer_callback_query(call.id)
     
 
 # 3 level
-@dp.callback_query_handler(lambda call: True)
+'''@dp.callback_query_handler(lambda call: True)
 async def print_products(call: types.CallbackQuery):
     pr_id = call.data[9:]
     product = db.show_products(pr_id)
@@ -52,7 +51,7 @@ async def print_products(call: types.CallbackQuery):
                             name = product[2], product_price_f = product_price, price = product[3])
     await bot.send_message(call.from_user.id, product_text, parse_mode='HTML', reply_markup=btn.products_buttons())
     await bot.delete_message(call.from_user.id, call.message.message_id)
-    await bot.answer_callback_query(call.id)
+    await bot.answer_callback_query(call.id)'''
 
 
 ###
