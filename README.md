@@ -2,6 +2,8 @@
 ____
 ### Food ordering service
 
+!! Now development is underway in the develop branch
+
 Universal online store based on telegram bot. In the further development of the application, users themselves will be able to design their online stores using a bot.
 
 The main branch of the master contains a three-level menu with a selection of categories (temporarily not working. [problem](https://github.com/olkhovichs/groceryShop_TelegramBot/issues/7) 
