@@ -39,7 +39,7 @@ def products_menu():
         btn_product = InlineKeyboardButton(text = product[1], callback_data='product_id' + str(product[0]))
         btn_incr = InlineKeyboardButton('+', callback_data='incr')
         btn_decr = InlineKeyboardButton('-', callback_data='decr')
-        btn_cart = InlineKeyboardButton('В корзину', callback_data='add_cart')
+        #btn_cart = InlineKeyboardButton('В корзину', callback_data='add_cart')
         markup_categ.row(btn_product).row(btn_decr, btn_incr)
     markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_product'))
 
