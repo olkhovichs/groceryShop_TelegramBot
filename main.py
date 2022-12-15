@@ -1,11 +1,11 @@
-from bot.config import TOKEN
-import bot.buttons as btn
-import bot.data.sql_utils as db
-
 from aiogram import Bot, types
 from aiogram.utils import executor
 from aiogram.utils.markdown import text
 from aiogram.dispatcher import Dispatcher
+
+from bot.config import TOKEN
+import bot.buttons as btn
+import bot.data.sql_utils as db
 
 bot = Bot(TOKEN)
 dp = Dispatcher(bot)
@@ -38,21 +38,6 @@ async def event_buttons(call: types.CallbackQuery):
         await bot.delete_message(call.from_user.id, call.message.message_id)
         await bot.answer_callback_query(call.id)
     
-
-# 3 level
-'''@dp.callback_query_handler(lambda call: True)
-async def print_products(call: types.CallbackQuery):
-    pr_id = call.data[9:]
-    product = db.show_products(pr_id)
-
-    product_name = '<b> Название: </b>'
-    product_price = '<b> Цена: </b>'
-    product_text = '{product_name_f} {name}\n{product_price_f} <code>{price}</code>'.format(product_name_f = product_name,
-                            name = product[2], product_price_f = product_price, price = product[3])
-    await bot.send_message(call.from_user.id, product_text, parse_mode='HTML', reply_markup=btn.products_buttons())
-    await bot.delete_message(call.from_user.id, call.message.message_id)
-    await bot.answer_callback_query(call.id)'''
-
 
 ###
 if __name__ == '__main__':

@@ -20,27 +20,14 @@ def main_menu():
 
     return markup_menu
 
-
-# 2 level: categories
-'''def categ_menu():
-    markup_categ = InlineKeyboardMarkup(row_width=3)
-    for category in db.show_categories(): # add all categories
-        btn_categ = InlineKeyboardButton(text = category[1], callback_data='categ_id:' + str(category[0])) 
-        markup_categ.insert(btn_categ)
-    markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_categ'))
-
-    return markup_categ'''
-
-
 # 2 level: all products
 def products_menu():
     markup_categ = InlineKeyboardMarkup(row_width=1)
+    btn_incr = InlineKeyboardButton('+', callback_data='incr')
+    btn_decr = InlineKeyboardButton('-', callback_data='decr')
     for product in db.show_products():
-        btn_product = InlineKeyboardButton(text = product[1], callback_data='product_id' + str(product[0]))
-        btn_incr = InlineKeyboardButton('+', callback_data='incr')
-        btn_decr = InlineKeyboardButton('-', callback_data='decr')
-        #btn_cart = InlineKeyboardButton('В корзину', callback_data='add_cart')
-        markup_categ.row(btn_product).row(btn_decr, btn_incr)
+        markup_categ.add(InlineKeyboardButton(product[1], callback_data='product_id' + str(product[0])))
+        markup_categ.row(btn_decr, btn_incr)
     markup_categ.add(InlineKeyboardButton('Назад', callback_data='back_product'))
 
     return markup_categ
