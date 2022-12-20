@@ -1,15 +1,7 @@
-from aiogram import Bot, types
-from aiogram.utils import executor
-from aiogram.utils.markdown import text
-from aiogram.dispatcher import Dispatcher
+from aiogram import types
 
-from utils.config import TOKEN
-import utils.sql_utils as db
+from loader import dp, db, bot, start
 import keyboards.buttons as btn
-
-bot = Bot(TOKEN)
-dp = Dispatcher(bot)
-
 
 # main
 @dp.message_handler(commands=['start'])
@@ -41,4 +33,4 @@ async def event_buttons(call: types.CallbackQuery):
 
 ###
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    start(dp)
