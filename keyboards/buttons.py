@@ -1,5 +1,5 @@
-from bot.config import about_path as gh_rm
-import bot.data.sql_utils as db
+import utils.sql_utils as db
+from utils.config import about_path as gh_rm
 
 from aiogram.types import ReplyKeyboardRemove, \
         ReplyKeyboardMarkup, KeyboardButton, \
@@ -8,11 +8,11 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 # 1 level: menu
 def main_menu():
-    btn_products = InlineKeyboardButton(text = 'Товары', callback_data='products') 
+    btn_products = InlineKeyboardButton(text='Товары', callback_data='products') 
     global btn_cart
-    btn_cart = InlineKeyboardButton(text = 'Корзина', callback_data='cart') 
-    btn_about = InlineKeyboardButton(text = 'Информация', url = gh_rm, callback_data='about') 
-    btn_exit = InlineKeyboardButton(text = 'Выход', callback_data='exit')
+    btn_cart = InlineKeyboardButton(text='Корзина', callback_data='cart') 
+    btn_about = InlineKeyboardButton(text='Информация', url=gh_rm, callback_data='about') 
+    btn_exit = InlineKeyboardButton(text='Выход', callback_data='exit')
 
     markup_menu = InlineKeyboardMarkup()
     markup_menu.row(btn_products).row(btn_cart) # add categories and cart

@@ -11,7 +11,7 @@ def hide_token():
 
 TOKEN = hide_token()
 about_path = 'https://github.com/olkhovichs/groceryShop_TelegramBot/blob/master/README.md'
-path_db = '/Users/semenolhovic/Python_Projects/groceryShop/bot/data/products.db'
+path_db = '/Users/semenolhovic/Python_Projects/groceryShop/data/products.db'
 '''
 def create_products_table():
     id = list()

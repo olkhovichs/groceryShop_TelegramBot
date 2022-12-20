@@ -3,18 +3,18 @@ from aiogram.utils import executor
 from aiogram.utils.markdown import text
 from aiogram.dispatcher import Dispatcher
 
-from bot.config import TOKEN
-import bot.buttons as btn
-import bot.data.sql_utils as db
+from utils.config import TOKEN
+import utils.sql_utils as db
+import keyboards.buttons as btn
 
 bot = Bot(TOKEN)
 dp = Dispatcher(bot)
 
 
 # main
-@dp.message_handler(commands = ['start'])
+@dp.message_handler(commands=['start'])
 async def main_menu(message: types.Message):
-    await message.reply("Выберите действие:", reply_markup = btn.main_menu())
+    await message.reply("Выберите действие:", reply_markup=btn.main_menu())
 
 # buttons
 @dp.callback_query_handler(lambda call: True)

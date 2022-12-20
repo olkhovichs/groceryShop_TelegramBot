@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import Error
-from bot.config import path_db as db
+from utils.config import path_db as db
 
 '''def show_categories():
     try:
