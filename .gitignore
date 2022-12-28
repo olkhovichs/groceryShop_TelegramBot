@@ -2,3 +2,5 @@
 /bot/__pycache__
 /bot/sql/__pycache__
 token.txt
+.idea
+__pycache__
