@@ -1,6 +1,8 @@
 *.DS_Store
-/bot/__pycache__
-/bot/sql/__pycache__
+/data/__pycache__
+/utils/__pycache__
+/keyboards/__pycache__
+/handlers/__pycache__
 token.txt
 .idea
 __pycache__
