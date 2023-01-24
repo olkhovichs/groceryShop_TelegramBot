@@ -1,36 +1,17 @@
 from aiogram import types
+from aiogram.dispatcher.filters.builtin import CommandStart
 
 from loader import dp, db, bot, start
-import keyboards.buttons as btn
+from handlers import catalog_hand
+import keyboards.inline.main_menu as menu
+
 
 # main
-@dp.message_handler(commands=['start'])
-async def main_menu(message: types.Message):
-    await message.reply("Выберите действие:", reply_markup=btn.main_menu())
-
-# buttons
-@dp.callback_query_handler(lambda call: True)
-async def event_buttons(call: types.CallbackQuery):
-    # 1 level and cart
-    if call.data == 'products' or call.data == 'back_cart':
-        await bot.send_message(call.from_user.id, 'Товары:', reply_markup=btn.products_menu())
-        await bot.delete_message(call.from_user.id, call.message.message_id)
-        await bot.answer_callback_query(call.id)
-    # cart
-    elif call.data == 'cart':
-        await bot.send_message(call.from_user.id, 'Корзина:', reply_markup=btn.cart_menu()) 
-        await bot.delete_message(call.from_user.id, call.message.message_id)
-        await bot.answer_callback_query(call.id)
-    elif call.data == 'exit':
-        await bot.delete_message(call.from_user.id, call.message.message_id)
-        await bot.answer_callback_query(call.id)
-    # 2 level
-    elif call.data == 'back_products':
-        await bot.send_message(call.from_user.id, 'Товары:', reply_markup=btn.main_menu())
-        await bot.delete_message(call.from_user.id, call.message.message_id)
-        await bot.answer_callback_query(call.id)
+@dp.message_handler(CommandStart())
+async def bot_start(message: types.Message):
+    await(message.answer('''Hi! 👋\nThis is a universal bot store for the sale of any goods.'''))
+    await message.reply("Выберите действие:", reply_markup=menu.main_menu())
     
 
-###
 if __name__ == '__main__':
     start(dp)
