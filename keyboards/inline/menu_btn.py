@@ -5,6 +5,8 @@ from aiogram.utils.callback_data import CallbackData
 from utils.config import about_path as gh_rm
 
 
+menu_cd = CallbackData('show_menu', 'level')
+
 # 1 level: menu
 def main_menu():
     btn_products = InlineKeyboardButton(text='Товары', callback_data='products') 
