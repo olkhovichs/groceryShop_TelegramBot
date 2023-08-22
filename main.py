@@ -10,7 +10,7 @@ import keyboards.inline.main_menu as menu
 @dp.message_handler(CommandStart())
 async def bot_start(message: types.Message):
     await(message.answer('''Hi! 👋\nThis is a universal bot store for the sale of any goods.'''))
-    await message.reply("Выберите действие:", reply_markup=menu.main_menu())
+    await message.reply("Choose an action:", reply_markup=menu.main_menu())
     
 
 if __name__ == '__main__':
